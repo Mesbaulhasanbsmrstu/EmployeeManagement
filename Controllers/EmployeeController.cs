@@ -19,7 +19,8 @@ namespace EmployeeManagement.Controllers
         }
         public async Task< IActionResult> Index()
         {
-            var employees = await _context.employees.ToListAsync();
+            //var employees = await _context.employees.ToListAsync();
+            var employees = await _context.employees.FromSqlRaw<Employee>("getEmployee").ToListAsync();
             return View(employees);
         }
         public ActionResult Create()
